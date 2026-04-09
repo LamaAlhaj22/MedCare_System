@@ -3,4 +3,3 @@ Work Completed:
  - Created Entity Relationship Diagram (ERD)
  - Designed Use Case Diagram
  - Defined relationships between entities
- - Identified system operations
