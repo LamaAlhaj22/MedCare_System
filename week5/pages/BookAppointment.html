@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Appointment</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="
+    background-image: url('images/bg.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+">
+
+<!-- Centered Container -->
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+
+    <!-- Main Box -->
+    <div class="card shadow p-4" style="width: 500px;">
+
+        <!-- Title -->
+        <h3 class="text-center mb-4">Book Appointment</h3>
+
+        <!-- Form -->
+        <form>
+
+            <!-- Doctor -->
+            <div class="mb-3">
+                <label class="form-label">Doctor</label>
+                <input type="text" class="form-control" value="Dr. Ahmad" readonly>
+            </div>
+
+            <!-- Date -->
+            <div class="mb-3">
+                <label class="form-label">Select Date</label>
+                <input type="date" class="form-control">
+            </div>
+
+            <!-- Time -->
+            <div class="mb-3">
+                <label class="form-label">Select Time</label>
+                <input type="time" class="form-control">
+            </div>
+
+            <!-- Notes -->
+            <div class="mb-3">
+                <label class="form-label">Notes (Optional)</label>
+                <textarea class="form-control" rows="3" placeholder="Enter notes..."></textarea>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between">
+
+                <a href="patient-dashboard.html" class="btn btn-secondary">
+                    Back
+                </a>
+
+                <button type="submit" class="btn btn-primary">
+                    Confirm Booking
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

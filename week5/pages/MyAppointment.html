@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Appointments</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="
+    background-image: url('images/bg.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+">
+
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+
+    <div class="card shadow p-4" style="width: 800px; max-height: 90vh; overflow-y: auto;">
+        
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3>My Appointments</h3>
+            <a href="patient-dashboard.html" class="btn btn-secondary btn-sm">Back to Dashboard</a>
+        </div>
+
+        <hr>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5>Dr. Ahmad</h5>
+                <p><strong>Specialty:</strong> Cardiology</p>
+                <p><strong>Date:</strong> 2025-05-20</p>
+                <p><strong>Time:</strong> 10:00 AM</p>
+                <p><strong>Status:</strong> Pending</p>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-primary btn-sm">Edit</button>
+                    <button class="btn btn-danger btn-sm">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5>Dr. Lina</h5>
+                <p><strong>Specialty:</strong> Dermatology</p>
+                <p><strong>Date:</strong> 2025-05-22</p>
+                <p><strong>Time:</strong> 12:30 PM</p>
+                <p><strong>Status:</strong> Confirmed</p>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-primary btn-sm">Edit</button>
+                    <button class="btn btn-danger btn-sm">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
