@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MedCare Register</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            text-align: center;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+             url("medical.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card {
+            width: 400px;
+            margin: 80px auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* العنوان مع الأيقونة */
+        .title {
+            text-align: left;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .title i {
+            color: #e07a7a;
+            margin-right: 8px;
+        }
+
+        .line {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        /* الزر */
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #3290e8;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #357abd;
+        }
+
+        .login-text {
+            margin-top: 20px;
+        }
+
+        .login-text a {
+            color: #3290e8;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="title">
+            <i class="fa-solid fa-heart-pulse"></i> MedCare
+        </div>
+        <div class="line"></div>
+
+        <h2>Register</h2>
+        <form>
+            <label>Full Name:</label>
+            <input type="text" placeholder="Enter your name">
+
+            <label>Email:</label>
+            <input type="email" placeholder="Enter your email">
+
+            <label>Password:</label>
+            <input type="password" placeholder="Enter your password">
+
+            <label>Confirm Password:</label>
+            <input type="password" placeholder="Confirm your password">
+            <button type="submit">Register</button>
+        </form>
+        <div class="login-text">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+</body>
+</html>

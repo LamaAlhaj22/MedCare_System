@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            margin: 0;
+            min-height: 100vh;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("medical.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card {
+            width: 360px;
+            height: 270px;
+            margin: 80px auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* MedCare */
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .title i {
+            color: #e07a7a;
+            margin-right: 8px;
+        }
+
+        
+        h2 {   
+            margin-top: 30px;
+        }
+
+        .btn {  /* الأزرار */
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn:first-of-type{
+            margin-top: 23px;
+        }
+
+        .btn:hover {
+            background: #357abd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="title">
+            <i class="fa-solid fa-heart-pulse"></i> MedCare
+        </div>
+        <h2>Admin Panel</h2>
+        <button class="btn">Manage Doctors</button>
+        <button class="btn">Manage Patients</button>
+        <button class="btn">View Appointments</button>
+
+    </div>
+</body>
+</html>

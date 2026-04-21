@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MedCare Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("medical.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card {
+            width: 380px;
+            text-align: left;
+            background: white;
+            border: 1px solid #f3a5a5;
+            
+        }
+
+        .top-bar {
+            padding: 18px 20px;
+            border-bottom: 1px solid #d9d9d9;
+            font-size: 18px;
+            font-weight: bold;
+            color: #4a4a4a;
+        }
+
+        .top-bar i {
+            color: #e18b7a;
+            margin-right: 8px;
+        }
+
+        .content {
+            padding: 25px 40px 35px;
+            text-align: center;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            width: 145px;
+            padding: 10px 0;
+            border: 1px solid #cfd6df;
+            background: #f7f7f7;
+            font-weight: bold;
+            color: #666;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .tab.active {
+            background: white;
+            color: #2f6fb2;
+            border-bottom: 2px solid #2f6fb2;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 2px;
+            font-size: 17px;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            border: none;
+            border-bottom: 2px solid #cfcfcf;
+            padding: 10px;
+            margin-bottom: 18px;
+            margin-top: 15px;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            background: #3290e8;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #357abd;
+        }
+
+        .separator {
+            width: 100%;
+            border-bottom: 1px solid #d9d9d9;
+            margin: 25px 0 15px;
+            position: relative;
+        }
+
+        .separator::after {
+            content: "";
+            width: 7px;
+            height: 7px;
+            background: #9b9b9b;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: -3px;
+            transform: translateX(-50%);
+        }
+
+        .account-text {
+            text-align: center;
+            color: #555;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .create-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #2f6fb2;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="top-bar">
+            <i class="fa-solid fa-heart-pulse"></i>MedCare
+        </div>
+        <div class="content">
+            <div class="tabs">
+                <a href="login.html" class="tab active">Login</a>
+                <a href="register.html" class="tab">Register</a>
+            </div>
+            <form>
+                <input type="email" placeholder="Enter your email">
+                <input type="password" placeholder="Enter your Password">
+                <button type="submit">Login</button>
+            </form>
+            <div class="separator"></div>
+            <div class="account-text">Don’t have an account?</div>
+            <a href="#" class="create-link">Create Account</a>
+        </div>
+    </div>
+</body>
+</html>
