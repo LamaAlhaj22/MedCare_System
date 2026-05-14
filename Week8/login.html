@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MedCare Login</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+margin: 0;
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+url("medical.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.card {
+width: 90%;
+max-width: 380px;
+text-align: left;
+background: white;
+border: 1px solid #f3a5a5;
+border-radius:12px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+overflow: hidden;
+}
+
+.content{
+padding: 27px;
+}
+
+.top-bar {
+padding: 15px 25px;
+border-bottom: 1px solid #d9d9d9;
+font-size: 18px;
+font-weight: bold;
+color: #4a4a4a;
+}
+
+.top-bar i {
+color: #e18b7a;
+margin-right: 8px;
+}
+
+@media (max-width:480px) {
+.content {
+padding: 20px;
+}
+}
+
+.tabs {
+display: flex;
+justify-content: center;
+margin-bottom: 30px;
+}
+
+.tab {
+flex: 1;
+padding: 10px 0;
+border: 1px solid #cfd6df;
+background: #f7f7f7;
+font-weight: bold;
+color: #666;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+}
+
+.tab.active {
+background: white;
+color: #2f6fb2;
+border-bottom: 2px solid #2f6fb2;
+}
+
+form {
+text-align: left;
+}
+
+label {
+display: block;
+margin-top: 15px;
+margin-bottom: 2px;
+font-size: 17px;
+color: #444;
+}
+
+input {
+width: 100%;
+border: none;
+border-bottom: 2px solid #cfcfcf;
+padding: 10px;
+margin-bottom: 5px;
+margin-top: 15px;
+font-size: 16px;
+box-sizing: border-box;
+outline: none;
+}
+
+small {
+display: block;
+margin-bottom: 10px;
+font-size: 13px;
+}
+
+button {
+width: 100%;
+background: #3290e8;
+color: white;
+border: none;
+padding: 12px;
+font-size: 16px;
+border-radius: 3px;
+cursor: pointer;
+margin-top: 17px;
+}
+
+button:hover {
+background: #357abd;
+}
+
+.separator {
+width: 100%;
+border-bottom: 1px solid #d9d9d9;
+margin: 25px 0 15px;
+position: relative;
+}
+
+.separator::after {
+content: "";
+width: 7px;
+height: 7px;
+background: #9b9b9b;
+border-radius: 50%;
+position: absolute;
+left: 50%;
+top: -3px;
+transform: translateX(-50%);
+}
+
+.account-text {
+text-align: center;
+color: #555;
+font-size: 14px;
+margin-top: 5px;
+}
+
+.create-link {
+display: block;
+text-align: center;
+margin-top: 10px;
+color: #2f6fb2;
+font-size: 14px;
+text-decoration: underline;
+}
+
+/* loading */
+#loading {
+display: none;
+text-align: center;
+font-weight: bold;
+color: #2f6fb2;
+margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="top-bar">
+<i class="fa-solid fa-heart-pulse"></i> MedCare
+</div>
+
+<div class="content">
+
+<div class="tabs">
+<a href="login.html" class="tab active">Login</a>
+<a href="register.html" class="tab">Register</a>
+</div>
+
+<form id="loginForm">
+
+<input type="email" id="email" placeholder="Enter your email">
+<small id="emailError" style="color:red;"></small>
+
+<input type="password" id="password" placeholder="Enter your Password">
+<small id="passwordError" style="color:red;"></small>
+
+<button type="submit">Login</button>
+
+</form>
+
+<div id="loading">Logging in...</div>
+
+<div class="separator"></div>
+
+<div class="account-text" id="message">Don’t have an account?</div>
+
+<a href="register.html" class="create-link">Create Account</a>
+
+</div>
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    let emailError = document.getElementById("emailError");
+    let passwordError = document.getElementById("passwordError");
+
+    let message = document.getElementById("message");
+    let loading = document.getElementById("loading");
+
+    let valid = true;
+
+    // reset errors
+    emailError.innerText = "";
+    passwordError.innerText = "";
+
+    // EMAIL validation
+    if (email === "") {
+        emailError.innerText = "Email is required";
+        valid = false;
+    }
+
+    // PASSWORD validation
+    if (password === "") {
+        passwordError.innerText = "Password is required";
+        valid = false;
+    }
+
+    if (valid) {
+
+        // AJAX Simulation
+        loading.style.display = "block";
+        message.innerText = "";
+
+        setTimeout(function() {
+
+            loading.style.display = "none";
+
+            alert("Login successful!");
+
+            // DOM Manipulation 
+            message.innerText = "Welcome back!";
+            message.style.color = "green";
+
+        }, 1000);
+
+    }
+
+});
+</script>
+
+</body>
+</html>

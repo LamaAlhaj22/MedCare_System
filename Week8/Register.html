@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MedCare Register</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<meta name="viewport" content="width=device-width , initial-scale=1.0">
+
+<style>
+
+body {
+margin: 0;
+font-family: Arial;
+text-align: center;
+min-height: 100vh;
+background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+url("medical.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.card {
+width: 90%;
+max-width: 400px;
+margin: 80px auto;
+background: rgba(255, 255, 255, 0.95);
+padding: 30px;
+border-radius: 15px;
+box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* title */
+.title {
+text-align: left;
+font-size: 20px;
+font-weight: bold;
+margin-bottom: 20px;
+}
+
+.title i {
+color: #e07a7a;
+margin-right: 8px;
+}
+
+.line {
+margin: 0 0 25px;
+border-bottom: 1px solid #ddd;
+}
+
+/* form */
+form {
+text-align: left;
+}
+
+label {
+display: block;
+margin-bottom: 5px;
+margin-top: 10px;
+}
+
+input {
+width: 100%;
+border: none;
+border-bottom: 2px solid #ccc;
+padding: 10px 5px;
+margin-bottom: 5px;
+font-size: 16px;
+outline: none;
+box-sizing: border-box;
+}
+
+input:focus {
+border-bottom: 2px solid #3290e8;
+}
+
+input::placeholder {
+font-size: 14px;
+color: #bbb;
+}
+
+/* error */
+small {
+color: red;
+font-size: 13px;
+display: block;
+margin-bottom: 10px;
+}
+
+/* button */
+button {
+width: 100%;
+padding: 12px;
+background: #3290e8;
+border: none;
+border-radius: 10px;
+color: white;
+font-size: 16px;
+cursor: pointer;
+margin-top: 15px;
+}
+
+button:hover {
+background: #357abd;
+}
+
+/* loading */
+#loading {
+display: none;
+text-align: center;
+font-weight: bold;
+color: #2f6fb2;
+margin-top: 15px;
+}
+
+/* login text */
+.login-text {
+margin-top: 20px;
+font-size: 14px;
+}
+
+.login-text a {
+color: #3290e8;
+font-weight: bold;
+text-decoration: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="title">
+<i class="fa-solid fa-heart-pulse"></i> MedCare
+</div>
+
+<div class="line"></div>
+
+<h2>Register</h2>
+
+<form id="registerForm">
+
+<label>Full Name:</label>
+<input type="text" id="name" placeholder="Enter your name">
+<small id="nameError"></small>
+
+<label>Email:</label>
+<input type="email" id="email" placeholder="Enter your email">
+<small id="emailError"></small>
+
+<label>Password:</label>
+<input type="password" id="password" placeholder="Enter your password">
+<small id="passwordError"></small>
+
+<label>Confirm Password:</label>
+<input type="password" id="confirmPassword" placeholder="Confirm your password">
+<small id="confirmError"></small>
+
+<button type="submit">Register</button>
+
+</form>
+
+<div id="loading">Creating account...</div>
+
+<div class="login-text">
+Already have an account?
+<a href="login.html">Login</a>
+</div>
+
+</div>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let confirm = document.getElementById("confirmPassword").value;
+
+    let loading = document.getElementById("loading");
+
+    let valid = true;
+
+    // reset errors
+    document.getElementById("nameError").innerText = "";
+    document.getElementById("emailError").innerText = "";
+    document.getElementById("passwordError").innerText = "";
+    document.getElementById("confirmError").innerText = "";
+
+    // NAME
+    if (name === "") {
+        document.getElementById("nameError").innerText = "Name is required";
+        valid = false;
+    }
+
+    // EMAIL
+    if (email === "") {
+        document.getElementById("emailError").innerText = "Email is required";
+        valid = false;
+    }
+
+    // PASSWORD
+    if (password === "") {
+        document.getElementById("passwordError").innerText = "Password is required";
+        valid = false;
+    }
+
+    // CONFIRM PASSWORD
+    if (confirm === "") {
+        document.getElementById("confirmError").innerText = "Please confirm password";
+        valid = false;
+    }
+if (password !== "" && confirm !== "" && password !== confirm) {
+        document.getElementById("confirmError").innerText = "Passwords do not match";
+        valid = false;
+    }
+
+    if (valid) {
+
+        // AJAX Simulation
+        loading.style.display = "block";
+
+        setTimeout(function() {
+
+            loading.style.display = "none";
+
+            alert("Account created successfully!");
+
+            // DOM Manipulation
+            document.querySelector("h2").innerText = "Welcome!";
+
+        }, 1000);
+
+    }
+
+});
+</script>
+
+</body>
+</html>

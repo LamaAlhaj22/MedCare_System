@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doctor Dashboard</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body {
+margin: 0;
+min-height: 100vh;
+background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+url("medical.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.page-container {
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+}
+
+.main-card {
+width: 90%;
+max-width: 800px;
+background: rgba(255,255,255,0.95);
+padding: 30px;
+border-radius: 15px;
+box-shadow: 0 0 15px rgba(0,0,0,0.2);
+position: relative;
+max-height: 90vh;
+overflow-y: auto;
+}
+
+.title {
+text-align: left;
+font-size: 22px;
+font-weight: bold;
+margin-bottom: 10px;
+}
+
+.title i {
+color: #e07a7a;
+margin-right: 8px;
+}
+
+.line {
+border-bottom: 1px solid #ddd;
+margin-bottom: 20px;
+}
+
+.page-title {
+text-align: center;
+margin-bottom: 25px;
+}
+
+/* appointment card */
+.appointment-card {
+width: 90%;
+max-width: 450px;
+margin: 20px auto;
+padding: 20px;
+border-radius: 15px;
+background: white;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+text-align: left;
+}
+
+.logout-btn {
+position: absolute;
+top: 20px;
+right: 20px;
+}
+
+@media (max-width: 600px) {
+.logout-btn {
+position: static;
+display: block;
+width: 100%;
+margin-bottom: 15px;
+}
+}
+
+#message {
+text-align: center;
+margin-top: 20px;
+font-weight: bold;
+color: green;
+}
+
+/* Added for AJAX loading */
+#loading {
+display: none;
+text-align: center;
+font-weight: bold;
+color: #2f6fb2;
+margin: 20px 0;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="page-container">
+
+<div class="main-card">
+
+<div class="title">
+<i class="fa-solid fa-heart-pulse"></i> MedCare
+</div>
+
+<div class="line"></div>
+
+<h3 class="page-title" id="pageTitle">Doctor Dashboard</h3>
+
+<a href="login.html" class="btn btn-secondary btn-sm logout-btn">Logout</a>
+
+<!-- Added for AJAX loading -->
+<div id="loading">Loading appointments...</div>
+
+<!-- Added container for appointments -->
+<div id="appointmentsContainer"></div>
+
+<div id="message"></div>
+
+</div>
+
+</div>
+
+<script>
+
+let doctorAppointments = [];
+
+// AJAX Simulation
+function loadDoctorAppointments() {
+
+    document.getElementById("loading").style.display = "block";
+
+    setTimeout(() => {
+
+        doctorAppointments = [
+            {
+                patient: "Lama",
+                date: "20-05-2025",
+                time: "10:00 AM",
+                notes: "General Checkup",
+                status: "Confirmed"
+            },
+            {
+                patient: "Ahmad",
+                date: "22-05-2025",
+                time: "10:30 AM",
+                notes: "Skin Consultation",
+                status: "Confirmed"
+            }
+        ];
+
+        document.getElementById("loading").style.display = "none";
+
+        displayDoctorAppointments();
+
+    }, 1500);
+}
+
+// Display appointments
+function displayDoctorAppointments() {
+
+    let container = document.getElementById("appointmentsContainer");
+
+    container.innerHTML = "";
+
+    doctorAppointments.forEach(appointment => {
+
+        container.innerHTML += `
+        <div class="appointment-card">
+        <h5>Patient: ${appointment.patient}</h5>
+        <p><strong>Date:</strong> ${appointment.date}</p>
+        <p><strong>Time:</strong> ${appointment.time}</p>
+        <p><strong>Notes:</strong> ${appointment.notes}</p>
+
+        <label>Status:</label>
+        <select class="form-select status">
+        <option ${appointment.status === "Pending" ? "selected" : ""}>Pending</option>
+        <option ${appointment.status === "Confirmed" ? "selected" : ""}>Confirmed</option>
+        <option ${appointment.status === "Completed" ? "selected" : ""}>Completed</option>
+        <option ${appointment.status === "Cancelled" ? "selected" : ""}>Cancelled</option>
+        </select>
+
+        <button class="btn btn-primary btn-sm mt-3" onclick="updateStatus(this)">
+        Update
+        </button>
+        </div>
+        `;
+    });
+}
+
+function updateStatus(button) {
+
+    // DOM manipulation
+    let card = button.parentElement;
+    let status = card.querySelector(".status").value;
+
+    document.getElementById("message").innerText =
+        "Status updated to: " + status;
+
+    // تغيير عنوان الصفحة (DOM manipulation)
+    document.getElementById("pageTitle").innerText = "Dashboard Updated ✔";
+
+    // تأثير بسيط
+    button.innerText = "Updated ✔";
+    button.style.background = "green";
+}
+
+window.onload = loadDoctorAppointments;
+
+</script>
+
+</body>
+</html>

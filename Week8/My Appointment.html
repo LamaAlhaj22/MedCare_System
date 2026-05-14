@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Appointments</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body {
+margin: 0;
+font-family: Arial;
+min-height: 100vh;
+background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+url("medical.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+text-align: center;
+}
+
+.card-container {
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+padding: 20px;
+}
+
+.main-card {
+width: 800px;
+max-width: 95%;
+max-height: 90vh;
+overflow-y: auto;
+background: rgba(255,255,255,0.95);
+padding: 30px;
+border-radius: 15px;
+box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+text-align: left;
+}
+
+.title {
+font-size: 22px;
+font-weight: bold;
+margin-bottom: 20px;
+border-bottom: 1px solid #ccc;
+padding-bottom: 10px;
+}
+
+.title i {
+color: #e07a7a;
+margin-right: 8px;
+}
+
+.appointment-card {
+transition: 0.3s;
+}
+
+.appointment-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+}
+
+.btn {
+transition: 0.2s;
+}
+
+.btn:hover {
+transform: scale(1.05);
+}
+
+#message {
+margin-top: 15px;
+font-weight: bold;
+color: green;
+text-align: center;
+}
+
+/* Added for AJAX loading */
+#loading {
+display: none;
+text-align: center;
+font-weight: bold;
+color: #2f6fb2;
+margin: 20px 0;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card-container">
+
+<div class="main-card">
+
+<div class="title">
+<i class="fas fa-heartbeat"></i> MedCare
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+<h3 id="pageTitle">My Appointments</h3>
+<a href="patient-dashboard.html" class="btn btn-secondary btn-sm">Back to Dashboard</a>
+</div>
+
+<hr>
+
+<!-- Added for AJAX loading -->
+<div id="loading">Loading appointments...</div>
+
+<!-- Added container for appointments -->
+<div id="appointmentsContainer"></div>
+
+<div id="message"></div>
+
+</div>
+
+</div>
+
+<script>
+
+let appointments = [];
+
+// AJAX Simulation
+function loadAppointments() {
+
+    document.getElementById("loading").style.display = "block";
+
+    setTimeout(() => {
+
+        appointments = [
+            {
+                doctor: "Dr. Ahmad",
+                specialty: "Cardiology",
+                date: "2025-05-20",
+                time: "10:00 AM",
+                status: "Pending",
+                statusClass: "text-warning"
+            },
+            {
+                doctor: "Dr. Lina",
+                specialty: "Dermatology",
+                date: "2025-05-22",
+                time: "12:30 PM",
+                status: "Confirmed",
+                statusClass: "text-success"
+            }
+        ];
+
+        document.getElementById("loading").style.display = "none";
+
+        displayAppointments();
+
+    }, 1500);
+}
+
+// Display appointments
+function displayAppointments() {
+
+    let container = document.getElementById("appointmentsContainer");
+
+    container.innerHTML = "";
+
+    appointments.forEach(appointment => {
+
+        container.innerHTML += `
+        <div class="card mb-3 appointment-card">
+        <div class="card-body">
+
+        <h5>${appointment.doctor}</h5>
+        <p><strong>Specialty:</strong> ${appointment.specialty}</p>
+        <p><strong>Date:</strong> ${appointment.date}</p>
+        <p><strong>Time:</strong> ${appointment.time}</p>
+
+        <p>
+        <strong>Status:</strong>
+        <span class="status ${appointment.statusClass}">${appointment.status}</span>
+        </p>
+
+        <div class="d-flex justify-content-end gap-2 mt-3">
+
+        <button class="btn btn-primary btn-sm" onclick="editAppointment(this)">
+        Edit
+        </button>
+
+        <button class="btn btn-danger btn-sm" onclick="cancelAppointment(this)">
+        Cancel
+        </button>
+
+        </div>
+
+        </div>
+        </div>
+        `;
+    });
+}
+
+// Edit button (DOM manipulation)
+function editAppointment(btn) {
+
+    let card = btn.closest(".card");
+    let title = card.querySelector("h5").innerText;
+
+    document.getElementById("pageTitle").innerText =
+        "Editing: " + title;
+
+    document.getElementById("message").innerText =
+        "You are editing appointment with " + title;
+}
+
+// Cancel button
+function cancelAppointment(btn) {
+
+    let card = btn.closest(".card");
+
+    card.remove();
+
+    document.getElementById("message").innerText =
+        "Appointment cancelled successfully!";
+}
+
+window.onload = loadAppointments;
+
+</script>
+</body>
+</html>

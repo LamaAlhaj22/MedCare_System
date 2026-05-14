@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Patient Dashboard</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+/* ================= BODY ================= */
+body {
+margin: 0;
+font-family: Arial;
+min-height: 100vh;
+background:
+linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+url("medical.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+/* ================= MAIN CARD ================= */
+.page-container {
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+}
+
+.main-card {
+width: 90%;
+max-width: 850px;
+max-height: 90vh;
+overflow-y: auto;
+background: rgba(255,255,255,0.95);
+padding: 35px;
+border-radius: 15px;
+box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+/* ================= TITLE ================= */
+.title {
+font-size: 22px;
+font-weight: bold;
+border-bottom: 1px solid #ccc;
+padding-bottom: 10px;
+margin-bottom: 20px;
+}
+
+.title i {
+color: #e07a7a;
+margin-right: 8px;
+}
+
+/* ================= DOCTOR CARD ================= */
+.doctor-card {
+margin-bottom: 20px;
+border: none;
+border-radius: 15px;
+box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+transition: 0.3s;
+}
+
+.doctor-card:hover {
+transform: translateY(-5px);
+}
+
+/* ================= FILTER ================= */
+#filterBox {
+max-width: 400px;
+margin: 20px auto;
+}
+
+/* ================= SEARCH ================= */
+#searchInput {
+margin-top: 15px;
+}
+
+/* ================= MESSAGE ================= */
+#message {
+text-align: center;
+margin-top: 15px;
+font-weight: bold;
+color: green;
+}
+
+/* ================= LOADING ================= */
+#loading {
+display: none;
+text-align: center;
+font-size: 18px;
+font-weight: bold;
+color: #2f6fb2;
+margin-bottom: 20px;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+height: 100%;
+width: 0;
+position: fixed;
+top: 0;
+left: 0;
+background: #2f6fb2;
+overflow-x: hidden;
+transition: 0.3s;
+padding-top: 60px;
+z-index: 1000;
+}
+
+.sidebar h4 {
+color: white;
+text-align: center;
+margin-bottom: 30px;
+}
+
+.sidebar a {
+padding: 12px 20px;
+text-decoration: none;
+font-size: 16px;
+color: white;
+display: block;
+}
+
+.sidebar a:hover {
+background: rgba(255,255,255,0.2);
+}
+
+/* ================= OPEN BUTTON ================= */
+.open-btn {
+position: fixed;
+top: 15px;
+left: 15px;
+font-size: 22px;
+background: #2f6fb2;
+color: white;
+border: none;
+padding: 8px 12px;
+border-radius: 5px;
+cursor: pointer;
+z-index: 1100;
+}
+
+/* ================= MODAL ================= */
+.modal {
+display: none;
+position: fixed;
+z-index: 2000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+background: white;
+margin: 15% auto;
+padding: 20px;
+width: 300px;
+border-radius: 10px;
+text-align: center;
+position: relative;
+}
+
+.close {
+position: absolute;
+right: 10px;
+top: 5px;
+font-size: 22px;
+cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="page-container">
+
+<div class="main-card">
+
+<div class="title">
+<i class="fa-solid fa-heart-pulse"></i> MedCare
+</div>
+
+<!-- Header -->
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+
+<h3 id="pageTitle">Patient Dashboard</h3>
+
+<div class="d-flex gap-2">
+<a href="#" class="btn btn-outline-primary btn-sm">Profile</a>
+
+<a href="My Appointment.html"
+class="btn btn-outline-secondary btn-sm">
+My Appointments
+</a>
+</div>
+
+</div>
+
+<hr>
+
+<!-- FILTER -->
+<div id="filterBox">
+
+<label class="form-label">Filter by Specialty</label>
+
+<select class="form-select" onchange="filterDoctors(this.value)">
+<option value="all">All</option>
+<option value="Cardiology">Cardiology</option>
+<option value="Dermatology">Dermatology</option>
+<option value="Neurology">Neurology</option>
+</select>
+
+<!-- SEARCH -->
+<input type="text"
+id="searchInput"
+class="form-control"
+placeholder="Search doctor..."
+onkeyup="searchDoctors(this.value)">
+
+</div>
+
+<!-- LOADING -->
+<div id="loading">
+Loading doctors...
+</div>
+
+<!-- DOCTORS CONTAINER -->
+<div id="doctorsContainer"></div>
+
+<!-- MESSAGE -->
+<div id="message"></div>
+
+</div>
+</div>
+
+<!-- ================= SIDEBAR ================= -->
+<div id="sidebar" class="sidebar">
+
+<h4>MedCare</h4>
+
+<a href="patient-dashboard.html">Patient Dashboard</a>
+<a href="BookAppointment.html">Book Appointment</a>
+<a href="MyAppointment.html">My Appointments</a>
+<a href="login.html">Login</a>
+
+</div>
+
+<!-- Sidebar Button -->
+<button class="open-btn" onclick="toggleSidebar()">☰</button>
+
+<!-- ================= MODAL ================= -->
+<div id="myModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close" onclick="closeModal()">&times;</span>
+
+<h3>MedCare Info</h3>
+
+<p>Welcome to MedCare System</p>
+
+<button class="btn btn-primary" onclick="closeModal()">
+OK
+</button>
+
+</div>
+</div>
+
+<!-- Modal Button -->
+<button class="btn btn-info mt-3" onclick="openModal()">
+Open Info
+</button>
+
+<!-- ================= JS ================= -->
+<script>
+
+/* ================= DOCTORS DATA ================= */
+
+let doctors = [];
+
+/* ================= LOAD DOCTORS (AJAX SIMULATION) ================= */
+
+function loadDoctors() {
+
+document.getElementById("loading").style.display = "block";
+
+setTimeout(() => {
+
+doctors = [
+
+{
+name: "Dr. Ahmad",
+specialty: "Cardiology"
+},
+
+{
+name: "Dr. Lina",
+specialty: "Dermatology"
+},
+
+{
+name: "Dr. Omar",
+specialty: "Neurology"
+},
+
+{
+name: "Dr. Sarah",
+specialty: "Cardiology"
+}
+
+];
+
+document.getElementById("loading").style.display = "none";
+
+displayDoctors(doctors);
+
+}, 1500);
+
+}
+
+/* ================= DISPLAY DOCTORS ================= */
+
+function displayDoctors(list) {
+
+let container = document.getElementById("doctorsContainer");
+
+container.innerHTML = "";
+
+list.forEach(doctor => {
+
+container.innerHTML += `
+
+<div class="card doctor-card"
+data-specialty="${doctor.specialty}">
+
+<div class="card-body">
+
+<h5>${doctor.name}</h5>
+
+<p>${doctor.specialty}</p>
+
+<a href="Book Appointment.html"
+class="btn btn-primary"
+onclick="selectDoctor('${doctor.name}')">
+
+Book
+
+</a>
+
+</div>
+</div>
+
+`;
+
+});
+
+}
+
+/* ================= FILTER ================= */
+
+function filterDoctors(value) {
+
+if (value === "all") {
+
+displayDoctors(doctors);
+
+} else {
+
+let filteredDoctors =
+doctors.filter(doctor =>
+doctor.specialty === value);
+
+displayDoctors(filteredDoctors);
+
+}
+
+}
+
+/* ================= SEARCH ================= */
+
+function searchDoctors(text) {
+
+let filteredDoctors = doctors.filter(doctor =>
+
+doctor.name.toLowerCase().includes(text.toLowerCase())
+
+);
+
+displayDoctors(filteredDoctors);
+
+}
+
+/* ================= SELECT DOCTOR ================= */
+
+function selectDoctor(name) {
+
+document.getElementById("pageTitle").innerText =
+"Booking with " + name;
+
+document.getElementById("message").innerText =
+"Selected " + name + " ✔";
+
+}
+
+/* ================= SIDEBAR ================= */
+
+function toggleSidebar() {
+
+let sidebar = document.getElementById("sidebar");
+
+if (sidebar.style.width === "250px") {
+
+sidebar.style.width = "0";
+
+} else {
+
+sidebar.style.width = "250px";
+
+}
+
+}
+
+/* ================= MODAL ================= */
+
+function openModal() {
+
+document.getElementById("myModal").style.display =
+"block";
+
+}
+
+function closeModal() {
+
+document.getElementById("myModal").style.display =
+"none";
+
+}
+
+window.onclick = function(event) {
+
+let modal = document.getElementById("myModal");
+
+if (event.target === modal) {
+
+modal.style.display = "none";
+
+}
+
+}
+
+/* ================= PAGE LOAD ================= */
+
+window.onload = loadDoctors;
+
+</script>
+
+</body>
+</html>
